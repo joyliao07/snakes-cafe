@@ -8,7 +8,8 @@ line_three = 'To quit any time, type "quit".'
 line_four = 'What would you like to order?'
 
 
-print(dedent(f'''
+def welcome():
+    print(dedent(f'''
     {('*' * WIDTH)}
     {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_one))//2 )) + line_one + (' ' * ((WIDTH - len('**')*2 - len(line_one))//2 )) + '**')}
     {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_two))//2 )) + line_two + (' ' * ((WIDTH - len('**')*2 - len(line_two))//2 )) + '**')}
@@ -49,7 +50,7 @@ print(dedent(f'''
     {('*' * WIDTH)}
     {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_four))//2 )) + line_four + (' ' * ((WIDTH - len('**')*2 - len(line_four))//2 )) + '**')}
     {('*' * WIDTH)}
-'''))
+    '''))
 
 
 
@@ -58,7 +59,9 @@ print(dedent(f'''
 
 
 
+def run():
+    welcome()
 
 
-
-
+if __name__ == '__main__':
+    run()
