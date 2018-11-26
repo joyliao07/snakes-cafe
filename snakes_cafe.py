@@ -6,7 +6,12 @@ line_one = 'Welcome to Snake Cafe!'
 line_two = 'Please see our menu below.'
 line_three = 'To quit any time, type "quit".'
 line_four = 'What would you like to order?'
-
+status = False
+# BANK = [
+#     {
+#         'status': False,
+#     },
+# ]
 
 def welcome():
     print(dedent(f'''
@@ -53,14 +58,21 @@ def welcome():
     '''))
 
 
-
-
-
+def ask_question():
+    user_input = input()
+    print('you have ordered: ' + user_input)
 
 
 
 def run():
     welcome()
+    ask_question()
+    # while status is False:
+    #     ask_question()
+    #     print('it continues.')
+
+
+
 
 
 if __name__ == '__main__':
