@@ -6,12 +6,19 @@ line_one = 'Welcome to Snake Cafe!'
 line_two = 'Please see our menu below.'
 line_three = 'To quit any time, type "quit".'
 line_four = 'What would you like to order?'
+line_five = 'What else would you like to order?'
 status = False
-# BANK = [
-#     {
-#         'status': False,
-#     },
-# ]
+bank =	[
+    {
+        "dish": "Wings",
+        "quantity": 0,
+    },
+    {
+        "dish": "Cookies",
+        "quantity": 0,
+    },
+]
+
 
 def welcome():
     print(dedent(f'''
@@ -60,16 +67,31 @@ def welcome():
 
 def ask_question():
     user_input = input()
+    check_input(user_input)
+    return user_input
+
+
+
+
+def check_input(user_input):
     print('you have ordered: ' + user_input)
+    for item in bank:
+        if user_input == item['dish']:
+            item['quantity'] += 1
+            print(dedent(f'''
+                {('*' * WIDTH)}
+                {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + line_five + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + '**')}
+                {('*' * WIDTH)}
+            '''))
+        print(item['dish'])
+        print(item['quantity'])
 
 
 
 def run():
     welcome()
-    ask_question()
-    # while status is False:
-    #     ask_question()
-    #     print('it continues.')
+    while status is False:
+        user_input = ask_question()
 
 
 
