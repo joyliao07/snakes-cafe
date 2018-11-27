@@ -10,11 +10,11 @@ line_five = 'What else would you like to order?'
 status = False
 bank =	[
     {
-        "dish": "Wings",
+        "dish": "wings",
         "quantity": 0,
     },
     {
-        "dish": "Cookies",
+        "dish": "cookies",
         "quantity": 0,
     },
 ]
@@ -66,7 +66,7 @@ def welcome():
 
 
 def ask_question():
-    user_input = input()
+    user_input = input().lower()
     check_input(user_input)
     return user_input
 
@@ -74,17 +74,32 @@ def ask_question():
 
 
 def check_input(user_input):
-    print('you have ordered: ' + user_input)
+    match = False
     for item in bank:
+        if user_input == 'quit':
+            exit()
         if user_input == item['dish']:
             item['quantity'] += 1
+            match = True
             print(dedent(f'''
                 {('*' * WIDTH)}
                 {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + line_five + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + '**')}
                 {('*' * WIDTH)}
             '''))
-        print(item['dish'])
-        print(item['quantity'])
+            print(item['dish'])
+            print(item['quantity'])
+            return user_input
+
+    if match is False:
+        print('Sorry, the item you have requested is not on the menu.')
+        print(dedent(f'''
+            {('*' * WIDTH)}
+            {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + line_five + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + '**')}
+            {('*' * WIDTH)}
+            '''))
+        return user_input
+    print(item['dish'])
+    print(item['quantity'])
 
 
 
