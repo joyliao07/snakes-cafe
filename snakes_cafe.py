@@ -17,6 +17,50 @@ bank =	[
         "dish": "cookies",
         "quantity": 0,
     },
+    {
+        "dish": "spring rolls",
+        "quantity": 0,
+    },
+    {
+        "dish": "salmon",
+        "quantity": 0,
+    },
+    {
+        "dish": "steak",
+        "quantity": 0,
+    },
+    {
+        "dish": "meat tornado",
+        "quantity": 0,
+    },
+    {
+        "dish": "a literal garden",
+        "quantity": 0,
+    },
+    {
+        "dish": "ice cream",
+        "quantity": 0,
+    },
+    {
+        "dish": "cake",
+        "quantity": 0,
+    },
+    {
+        "dish": "pie",
+        "quantity": 0,
+    },
+    {
+        "dish": "coffee",
+        "quantity": 0,
+    },
+    {
+        "dish": "tea",
+        "quantity": 0,
+    },
+    {
+        "dish": "blood of the innocent",
+        "quantity": 0,
+    },
 ]
 
 
@@ -71,8 +115,6 @@ def ask_question():
     return user_input
 
 
-
-
 def check_input(user_input):
     match = False
     for item in bank:
@@ -86,8 +128,9 @@ def check_input(user_input):
                 {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + line_five + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + '**')}
                 {('*' * WIDTH)}
             '''))
-            print(item['dish'])
-            print(item['quantity'])
+            print(dedent(f'''
+                {(str(item['quantity']) + ' items of ' + (item['dish']) + ' have been added to your meal')}
+            '''))
             return user_input
 
     if match is False:
@@ -98,9 +141,6 @@ def check_input(user_input):
             {('*' * WIDTH)}
             '''))
         return user_input
-    print(item['dish'])
-    print(item['quantity'])
-
 
 
 def run():
