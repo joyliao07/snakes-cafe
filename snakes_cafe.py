@@ -2,11 +2,6 @@ from textwrap import dedent
 import sys
 
 WIDTH = 100
-line_one = 'Welcome to Snake Cafe!'
-line_two = 'Please see our menu below.'
-line_three = 'To quit any time, type "quit".'
-line_four = 'What would you like to order?'
-line_five = 'What else would you like to order?'
 status = False
 bank =	[
     {
@@ -65,6 +60,11 @@ bank =	[
 
 
 def welcome():
+    #THIS FUNCTION IS TO GREET THE USERS, GIVE THEM AN OVERVIEW OF THE MENU, AND PROMP THEM TO MAKE AN ORDER. IT ALSO GIVES INSTRUCTION ON HOW TO QUIT THE PROGRAM.
+    line_one = 'Welcome to Snake Cafe!'
+    line_two = 'Please see our menu below.'
+    line_three = 'To quit any time, type "quit".'
+    line_four = 'What would you like to order?'
     print(dedent(f'''
     {('*' * WIDTH)}
     {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_one))//2 )) + line_one + (' ' * ((WIDTH - len('**')*2 - len(line_one))//2 )) + '**')}
@@ -110,12 +110,15 @@ def welcome():
 
 
 def ask_question():
+    #THIS FUNCTION TAKES IN THE INPUT() AND STORE IT AS USER_INPUT. THEN IT CALLS CHECK_INPUT FUNCTION.
     user_input = input().lower()
     check_input(user_input)
     return user_input
 
 
 def check_input(user_input):
+    #ACCORDING TO WHAT ORDER THE CLIENT MAKES, THIS FUNCTION GIVES DIFFERENT RESPONSES OF THE NEXT STEPS AND FEEDBACKS TO THE CLIENTS.
+    line_five = 'What else would you like to order?'
     match = False
     for item in bank:
         if user_input == 'quit':
@@ -124,12 +127,12 @@ def check_input(user_input):
             item['quantity'] += 1
             match = True
             print(dedent(f'''
+                {(str(item['quantity']) + ' items of ' + (item['dish']) + ' have been added to your meal')}
+            '''))
+            print(dedent(f'''
                 {('*' * WIDTH)}
                 {('**' + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + line_five + (' ' * ((WIDTH - len('**')*2 - len(line_five))//2 )) + '**')}
                 {('*' * WIDTH)}
-            '''))
-            print(dedent(f'''
-                {(str(item['quantity']) + ' items of ' + (item['dish']) + ' have been added to your meal')}
             '''))
             return user_input
 
@@ -144,13 +147,12 @@ def check_input(user_input):
 
 
 def run():
+    #THIS FUNCTION TO INVOLKE WELCOME FUNCTION AND BEFORE THE CLIENT ASKS TO QUIT, PROMPT THEM TO ASK_QUESTION.
     welcome()
     while status is False:
         user_input = ask_question()
 
 
-
-
-
 if __name__ == '__main__':
+    #THIS IS TO START THE PROGRAM
     run()
