@@ -1,9 +1,10 @@
+"""This module design the snake-cafe menu program."""
 from textwrap import dedent
 import sys
 
 WIDTH = 100
 status = False
-bank =	[
+bank = [
     {
         "dish": "wings",
         "quantity": 0,
@@ -60,7 +61,7 @@ bank =	[
 
 
 def welcome():
-    #THIS FUNCTION IS TO GREET THE USERS, GIVE THEM AN OVERVIEW OF THE MENU, AND PROMP THEM TO MAKE AN ORDER. IT ALSO GIVES INSTRUCTION ON HOW TO QUIT THE PROGRAM.
+    """To greet the users and start the promp to take input."""
     line_one = 'Welcome to Snake Cafe!'
     line_two = 'Please see our menu below.'
     line_three = 'To quit any time, type "quit".'
@@ -110,14 +111,14 @@ def welcome():
 
 
 def ask_question():
-    #THIS FUNCTION TAKES IN THE INPUT() AND STORE IT AS USER_INPUT. THEN IT CALLS CHECK_INPUT FUNCTION.
+    """To define user_input and pass to the next function."""
     user_input = input().lower()
     check_input(user_input)
     return user_input
 
 
 def check_input(user_input):
-    #ACCORDING TO WHAT ORDER THE CLIENT MAKES, THIS FUNCTION GIVES DIFFERENT RESPONSES OF THE NEXT STEPS AND FEEDBACKS TO THE CLIENTS.
+    """Per user_input, decide the path to go down."""
     line_five = 'What else would you like to order?'
     match = False
     for item in bank:
@@ -147,12 +148,11 @@ def check_input(user_input):
 
 
 def run():
-    #THIS FUNCTION TO INVOLKE WELCOME FUNCTION AND BEFORE THE CLIENT ASKS TO QUIT, PROMPT THEM TO ASK_QUESTION.
+    """To invoke welcome function."""
     welcome()
     while status is False:
         user_input = ask_question()
 
 
 if __name__ == '__main__':
-    #THIS IS TO START THE PROGRAM
     run()
